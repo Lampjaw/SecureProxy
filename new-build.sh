@@ -6,9 +6,9 @@ TAGS="`curl -s http://$REGISTRY/v2/$REPOSITORY/tags/list | jq -r '.tags' | sed '
 LATEST=`echo "${TAGS[*]}" | sort -nr | head -n1`
 BUILDTAG=$((LATEST + 1))
 
-docker.exe build -t ${REGISTRY}/${REPOSITORY}:${BUILDTAG} -t ${REGISTRY}/${REPOSITORY}:latest .
+docker build -t ${REGISTRY}/${REPOSITORY}:${BUILDTAG} -t ${REGISTRY}/${REPOSITORY}:latest .
 
-docker.exe push ${REGISTRY}/${REPOSITORY}:${BUILDTAG}
-docker.exe push ${REGISTRY}/${REPOSITORY}:latest
+docker push ${REGISTRY}/${REPOSITORY}:${BUILDTAG}
+docker push ${REGISTRY}/${REPOSITORY}:latest
 
 echo -e "\nCompleted ${REGISTRY}/${REPOSITORY}:${BUILDTAG}"
