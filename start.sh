@@ -50,6 +50,8 @@ server {
 
   ssl_certificate ${FULLCHAIN_KEY};
   ssl_certificate_key ${PRIVATE_KEY};
+  
+  client_max_body_size 0;
 
   server_name ${ROUTEHOST};
 
